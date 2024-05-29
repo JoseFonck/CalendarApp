@@ -3,6 +3,7 @@ import { addHours } from "date-fns";
 
 
 const tempEvent = {
+        _id: new Date().getTime(),
         title: "Cumpleaños del Jefe",
         notes: "Hay que comprar un pastel",
         start: new Date(),
@@ -23,8 +24,10 @@ export const calendarSlice = createSlice({
     },
 
     reducers:{
-        // getViewEvent:(state) => state.
+        onSetActiveEvent: (state, {payload}) => {
+            state.activeEvent = payload;
+        }
     },
 });
 
-export const {events} = calendarSlice.actions;
+export const {onSetActiveEvent} = calendarSlice.actions;

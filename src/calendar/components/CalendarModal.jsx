@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Modal from "react-modal";
 
 import { addHours, differenceInSeconds } from "date-fns";
@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 registerLocale("es", es);
 
-import { useUiStore } from "../../hooks";
+import { useCalendarStore, useUiStore } from "../../hooks";
 
 const customStyles = {
   content: {
@@ -27,13 +27,7 @@ Modal.setAppElement("#root");
 
 export const CalendarModal = () => {
   const { isDateModalOpen, toggleDateModal } = useUiStore();
-
-  //* ---------- const [isOpen, setIsOpen] = useState(true); *//REEMPLAZADO EN customhook
-
   const [formSubmitted, setformSubmited] = useState(false);
-
-  // const [classInputError, setClassInputError] = useState("");
-
   const [formValues, setFormValues] = useState({
     title: "Estudiar Python",
     notes: "No olvidar porque lo necesito",
@@ -47,18 +41,13 @@ export const CalendarModal = () => {
     return formValues.title.length > 0 ? "" : "is-invalid";
   }, [formValues.title, formSubmitted]);
 
-  // const dateClassError = useMemo(() => {
-  //   if (!formSubmitted) return "";
-  //   const difference = differenceInSeconds(formValues.end, formValues.start);
-  //   return difference > 0 ? "" : "is-invalid";
-  // });
+  const { activeEvent } = useCalendarStore();
 
-  // const onClassError = () => {
-  //   classInputError === ""
-  //     ? setClassInputError("is-invalid")
-  //     : setClassInputError("");
-  // };
-  // ,[formSubmitted, formValues.start,formValues.end])
+  useEffect(() => {
+    if (activeEvent !== null) {
+      setFormValues({ ...activeEvent });
+    }
+  }, [activeEvent]);
 
   const onInputChanged = ({ target }) => {
     console.log(target.value);
