@@ -12,7 +12,9 @@ export const useUiStore = () => {
         ? dispatch(onCloseDateModal())
         : dispatch(onOpenDateModal())
     }
-
+    const openNewEventModal = () => {
+        
+    }
 
     return {
         //*Properties
