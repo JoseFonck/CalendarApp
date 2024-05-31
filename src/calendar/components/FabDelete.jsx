@@ -1,14 +1,26 @@
+import { useState } from "react";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
+import { useUiStore } from "../../hooks/useUiStore";
+import { onOpenDateModal } from "../../store";
 
 export const FabDelete = () => {
-  const { deleteEvent } = useCalendarStore();
+  const { startDeletingEvent, hasEventSelected } = useCalendarStore();
+  const { isDateModalOpen } = useUiStore();
 
   const handleDelete = () => {
-    deleteEvent();
+    startDeletingEvent();
   };
 
+  const [display, setDisplay] = useState("none");
+
   return (
-    <button className="btn btn-danger fab-danger" onClick={handleDelete}>
+    <button
+      className="btn btn-danger fab-danger"
+      onClick={handleDelete}
+      style={{
+        display: hasEventSelected && !isDateModalOpen ? "" : "none",
+      }}
+    >
       <i className="fas fa-trash-alt"></i>
     </button>
   );

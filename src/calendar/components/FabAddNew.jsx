@@ -2,7 +2,7 @@ import { addHours } from "date-fns";
 import { useCalendarStore, useUiStore } from "../../hooks";
 
 export const FabAddNew = () => {
-  const { toggleDateModal } = useUiStore();
+  const { toggleDateModal, isDateModalOpen } = useUiStore();
   const { setActiveEvent } = useCalendarStore();
 
   const handleClickNew = () => {
@@ -20,7 +20,11 @@ export const FabAddNew = () => {
     toggleDateModal();
   };
   return (
-    <button className="btn btn-primary fab" onClick={handleClickNew}>
+    <button
+      className="btn btn-primary fab"
+      onClick={handleClickNew}
+      style={{ display: isDateModalOpen ? "none" : "" }}
+    >
       <i className="fas fa-plus"></i>
     </button>
   );

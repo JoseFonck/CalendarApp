@@ -14,7 +14,7 @@ import { localizer, getMessagesES } from "../../helpers";
 import { useCalendarStore, useUiStore } from "../../hooks";
 
 export const CalendarPage = () => {
-  const { toggleDateModal } = useUiStore();
+  const { toggleDateModal, isDateModalOpen } = useUiStore();
 
   const { events, setActiveEvent } = useCalendarStore();
 

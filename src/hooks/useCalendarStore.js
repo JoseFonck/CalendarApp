@@ -11,7 +11,7 @@ export const useCalendarStore = () => {
     }
 
     const startSavingEvent = async(calendarEvent) => {
-        //* TODO: llegar al backend
+        // TODO: llegar al backend
 
         if (calendarEvent._id) {
             //actualizando
@@ -22,7 +22,9 @@ export const useCalendarStore = () => {
         }
     }
 
-    const deleteEvent = () => {
+    const startDeletingEvent = () => {
+        // TODO: Llegar al backend
+
         dispatch(onDeleteEvent());
     }
 
@@ -32,10 +34,11 @@ export const useCalendarStore = () => {
         //* Properties
         events,
         activeEvent,
+        hasEventSelected: !!activeEvent,
 
         //* Methods
         setActiveEvent,
         startSavingEvent,
-        deleteEvent
+        startDeletingEvent
     }
 }
