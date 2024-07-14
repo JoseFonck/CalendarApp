@@ -9,7 +9,7 @@ export const useCalendarStore = () => {
     const setActiveEvent = (calendarEvent) =>{ 
         dispatch(onSetActiveEvent(calendarEvent))
     }
-
+    
     const startSavingEvent = async(calendarEvent) => {
         // TODO: llegar al backend
 
